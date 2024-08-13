@@ -1,0 +1,43 @@
+/* Header */
+
+.logo {
+  width: 30%;
+}
+.align-right {
+  justify-content: flex-end;
+}
+/* Main Body */
+.main-body {
+  padding-top: 50px;
+}
+.titles {
+  padding: 100px;
+}
+p {
+  font-size: 25px;
+}
+a {
+  text-decoration: none;
+  color: #0c650f;
+}
+
+a:hover {
+  text-decoration: underline;
+  opacity: 0.7;
+}
+.our-products {
+  padding: 30px;
+  font-weight: bolder;
+}
+.custom-main-image {
+  width: 500px;
+  height: 500px;
+}
+
+footer {
+  padding: 20px;
+  font-size: 15px;
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+}

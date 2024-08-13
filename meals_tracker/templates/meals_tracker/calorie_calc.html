@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'css/calorie-cal-style.css' %}" />
+{% endblock styles %}
+
+{% block extra_head %}
+  - Calorie Calculation
+{% endblock extra_head %}
+
+{% block content %}
+    <div class="container">
+      <div class="search-container">
+        <form class="d-flex" role="search" method="post">
+          <input
+            class="form-control me-2"
+            type="text"
+            placeholder="Enter Your Food ..."
+            aria-label="Search"
+            name="query"
+          />
+          <button class="btn btn-outline-dark" type="submit">Search</button>
+        </form>
+      </div>
+      <div class="loading-indicator" style="display: none">
+        <img src="images/loading.gif" alt="Loading..." />
+      </div>
+      <h1>
+        The Calories in <span class="food-name"></span> are
+        <span class="calorie-amount"></span> calories
+      </h1>
+      <div class="pie-chart-container">
+        <canvas id="nutritionPieChart"></canvas>
+      </div>
+      <h2>Nutritions Report</h2>
+
+      <div class="nutrition-report">
+        <table class="table table-light">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Grams</th>
+              <th scope="col">Percentage (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-warning">
+              <th scope="row">Total Carb</th>
+              <td class="carb-report"></td>
+              <td class="carb-report-percentage"></td>
+            </tr>
+            <tr class="table-success">
+              <th scope="row">Total Proteins</th>
+              <td class="proteins-report"></td>
+              <td class="proteins-report-percentage"></td>
+            </tr>
+            <tr class="table-danger">
+              <th scope="row">Total Fats</th>
+              <td class="fats-report"></td>
+              <td class="fats-report-percentage"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+  <script src="{% static 'js/calorie-cal.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock scripts %}

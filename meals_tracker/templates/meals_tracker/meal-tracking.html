@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'css/calorie-cal-style.css' %}" />
+{% endblock styles %}
+
+{% block extra_head %}
+  - Daily meals tracking
+{% endblock extra_head %}
+
+{% block content %}
+    <h1>Daily Meals Tracker</h1>
+    <div class="container">
+        <div class="search-container">
+            <form class="d-flex" role="search" method="post">
+                <input class="form-control me-2 w-50" type="text" placeholder="Enter Your Food ..."
+                     aria-label="Search" name="query"/>
+                <button class="btn btn-outline-dark m-1" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="loading-indicator" style="display: none">
+            <img src="images/loading.gif" alt="Loading..." />
+        </div>
+        <div class="nutrition-report-display">
+            <h2>
+                The Calories in <span class="food-name"></span> are
+                <span class="calorie-amount"></span> calories
+            </h2>
+            <h3>Nutritions Report</h3>
+            <div class="nutrition-report">
+                <table class="table table-light">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Grams</th>
+                      <th scope="col">Percentage (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-warning">
+                      <th scope="row">Total Carb</th>
+                      <td class="carb-report"></td>
+                      <td class="carb-report-percentage"></td>
+                    </tr>
+                    <tr class="table-success">
+                      <th scope="row">Total Proteins</th>
+                      <td class="proteins-report"></td>
+                      <td class="proteins-report-percentage"></td>
+                    </tr>
+                    <tr class="table-danger">
+                      <th scope="row">Total Fats</th>
+                      <td class="fats-report"></td>
+                      <td class="fats-report-percentage"></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <ul>
+            {% for meal in meals %}
+                <li>
+                    <strong> {{ meal.name }} - The Calories are {{ meal.calories }} calorie - {{ meal.created_at|date:"d-m-Y" }} </strong>
+                    <ul>
+                        {% for item in meal.food_items|split:"," %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                        <form method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="meal_slug" value="{{ meal.slug }}">
+                            <input type="hidden" name="_method" value="delete">
+                            <button class="btn btn-outline-danger" type="submit">Delete</button>
+                        </form>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- {% if selected_meal %}
+            <h4>{{ selected_meal.name }}</h4>
+            <h5>Food Items:</h5>
+            <ul>
+                {% for item in selected_meal.food_items.all %}
+                    <li>{{ item.name }}</li>
+                {% endfor %}
+                <li> {{ selected_meal.food_items }} </li>
+            </ul>
+        {% else %}
+            <p>Select a meal to see the details.</p>
+        {% endif %} -->
+        {% autoescape on %}
+        <h3>Add New Meal</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-dark" type="submit">Add Meal</button>
+        </form>
+        {% endautoescape %}
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'js/calorie-cal.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% endblock scripts %}

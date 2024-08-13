@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+              content="Calorie Compass helps you track your calories and achieve your fitness goals. Login to your account and start tracking today!"
+        />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+              crossorigin="anonymous"
+        />
+        <script
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous">
+
+        </script>
+        {% block styles %}
+            <link rel="stylesheet" href="{% static 'css/index-style.css' %}" />
+        {% endblock styles %}
+        <link rel="icon" href="{% static 'img/logo.png' %}" type="image/png" />
+        <title>
+            {% block head_title %}
+            Calorie Copmass
+            {% endblock head_title %}
+            {% block extra_head %}
+            {% endblock extra_head %}
+        </title>
+    </head>
+    <body>
+    {% block header %}
+        <header class="nav-bar">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <img class="logo" src="{% static 'img/logo.png' %}" alt="Calorie Compass Logo"/>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse align-right" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"
+                                   href="" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">Our Products</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'meals_tracker:calorie_calc' %}">Calorie Calculation</a>
+                                    </li>
+                                    {% if user.is_authenticated %}
+                                    <li>
+                                        <a class="dropdown-item" href="meal-tracking.html">Daily Meal Tracker</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+
+                            {% if user.is_authenticated %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{% url 'users:profile_edit' %}">Profile</a>
+                                    </li>
+                                {% url 'account_logout' as logout_url %}
+                                {% if logout_url %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ logout_url }}">Sign Out</a>
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                                {% url 'account_login' as login_url %}
+                                {% if login_url %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ login_url }}">Sign in</a>
+                                    </li>
+                                {% endif %}
+                                {% url 'account_signup' as signup_url %}
+                                {% if signup_url %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ signup_url }}">SignUp</a>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{% url 'meals_tracker:about_page' %}">About Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {% endblock header %}
+        <div>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} text-center">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% block content %}
+        <main class="main-body">
+          <div class="titles">
+            <h1 class="text-center">Your Health Companions</h1>
+            <h3 class="text-center">Track Your Progress</h3>
+          </div>
+          <div class="container-fluid" id="products">
+            <div class="row">
+              <div class="col-md-6 p-5">
+                <p>
+                  Calorie Compass is your ultimate guide in your weight loss
+                  journey. With our app, you can easily track your daily calorie
+                  intake, create your profile, add meals, and track your progress
+                  toward daily and weekly calorie and weight loss goals. Our app
+                  also suggests healthy meals that align with your calorie goals.
+                </p>
+              </div>
+              <div class="col-md-6 p-5">
+                <img
+                  src="{% static 'img/main.png' %}"
+                  alt="Calorie Compass is your ultimate guide in your weight loss journey"
+                  class="img-fluid custom-main-image"/>
+              </div>
+            </div>
+          </div>
+          <h1 class="text-center p-6 our-products">Our Products</h1>
+          <div class="container-fluid meal-tracking">
+            <div class="row">
+              <div class="col-md-6 p-5">
+                <p>
+                  <b>Meal Tracking</b> is a fundamental feature of our app. With
+                  meal tracking, users can easily log their daily food intake.
+                  Whether it’s breakfast, lunch, dinner, or snacks, our app allows
+                  users to record the details of each meal. By keeping track of
+                  their meals, users gain insights into their calorie consumption
+                  patterns, helping them make informed decisions about their diet.
+                </p>
+              </div>
+              <div class="col-md-6 p-5">
+                <a href="meal-tracking.html">
+                    <img src="{% static 'img/meal-suggestion.png' %}" alt="meal suggestion" class="img-fluid custom-main-image"/>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid calorie-calc">
+            <div class="row">
+              <div class="col-md-6 p-5">
+                <a href="calorie-calc.html">
+                  <img src="{% static 'img/meal-tracker.png' %}" alt="meal tracker" class="img-fluid custom-main-image"/>
+                </a>
+              </div>
+              <div class="col-md-6 p-5">
+                <p>
+                  <b>Calculating Daily Calorie Intake</b> is crucial for anyone
+                  aiming to manage their weight. Our app simplifies this process.
+                  Users input their personal details (such as age, weight, and
+                  height), and our algorithm computes their daily caloric needs.
+                  It’s a powerful tool for understanding how many calories you
+                  should consume to achieve your health and fitness goals.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+        {% endblock content %}
+        {% block extra_body %}
+        {% endblock extra_body %}
+        {% block footer %}
+        <footer>
+            Build by <a href="https://github.com/KariMaa-MahMoud" target="_blank"> Karima Mahmoud</a> &
+            <a href="https://github.com/BahyAllaAllam" target="_blank"> Bahy Allam</a>
+        </footer>
+        {% endblock footer %}
+        {% block scripts %}
+        <script src="{% static 'js/scripts.js' %}"></script>
+        {% endblock scripts %}
+    </body>
+</html>
