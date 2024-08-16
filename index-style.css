@@ -42,14 +42,6 @@ a:hover {
   height: 500px;
 }
 
-/* footer {
-  padding: 20px;
-  font-size: 15px;
-  background-color: #343a40;
-  color: #fff;
-  text-align: center;
-} */
-
 /* Contacts */
 .contacts {
   color: #fff;
@@ -66,6 +58,7 @@ a:hover {
 }
 
 footer {
+  font-family: "Playwrite AU VIC", cursive;
   padding: 20px;
   font-size: 15px;
   font-weight: bolder;
