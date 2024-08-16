@@ -1,3 +1,11 @@
+/* Time date */
+#datetime {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 /* Header */
 
 .logo {
@@ -34,10 +42,132 @@ a:hover {
   height: 500px;
 }
 
-footer {
+/* footer {
   padding: 20px;
   font-size: 15px;
   background-color: #343a40;
   color: #fff;
   text-align: center;
+} */
+
+/* Contacts */
+.contacts {
+  color: #fff;
+  background-color: #4d467f;
+  padding-left: 250px;
+}
+.contacts h1 {
+  color: #fff;
+  line-height: 1.5;
+}
+.social-contacts a i {
+  color: #fff;
+  font-size: 45px;
+}
+
+footer {
+  padding: 20px;
+  font-size: 15px;
+  font-weight: bolder;
+  color: #4d467f;
+  text-align: center;
+}
+.about-footer {
+  margin-top: 100px;
+  padding: 20px;
+  font-size: 15px;
+  font-weight: bolder;
+  background-color: #4d467f;
+  color: #fff;
+
+  text-align: center;
+}
+
+/* Responsive CSS */
+
+@media (max-width: 992px) {
+  .custom-main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+  h1,
+  h3 {
+    font-size: 30px;
+    margin: 20px;
+  }
+
+  p {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .align-right {
+    justify-content: flex-start;
+  }
+
+  .contacts {
+    padding: 0;
+  }
+
+  h1,
+  h3 {
+    font-size: 24px;
+    margin: 20px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .our-products {
+    margin: 50px;
+    padding: 20px;
+  }
+
+  footer {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .contacts h1 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .social-contacts a i {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo {
+    width: 120px;
+  }
+
+  .contacts {
+    padding-left: 20px;
+  }
+
+  .projects {
+    margin: 50px;
+  }
+
+  .our-products {
+    margin: 30px;
+    padding: 15px;
+    font-size: 20px;
+  }
+
+  .view-work-button {
+    margin-top: 50px;
+    font-size: 18px;
+  }
+
+  .custom-main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
 }
