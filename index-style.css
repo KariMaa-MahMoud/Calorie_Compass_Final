@@ -1,3 +1,6 @@
+body {
+  font-family: "Playwrite AU VIC", cursive;
+}
 /* Header */
 
 .logo {
@@ -6,32 +9,76 @@
 .align-right {
   justify-content: flex-end;
 }
-/* Main Body */
-.main-body {
-  padding-top: 50px;
+.flex {
+  display: flex;
+  align-items: center;
 }
-.titles {
-  padding: 100px;
+/* Intro page */
+.intro-page::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgb(0, 0, 0, 0.1);
 }
-p {
+.intro-page {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: url("main.jpg");
+  background-position: center;
+  background-size: cover;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+.intro-page h1 {
+  font-size: 50px;
+}
+.intro-page p {
+  padding: 30px;
+  font-size: 30px;
+}
+.intro-page button {
   font-size: 25px;
-}
-a {
+  color: black;
   text-decoration: none;
-  color: #0c650f;
+  background: white;
+  padding: 10px 25px;
+  border-radius: 5px;
+  border: 2px solid white;
+  box-shadow: rgb(0, 0, 0, 0.4);
+  transition: 0.3s;
 }
 
-a:hover {
+.intro-page button:hover {
+  color: #fff;
+  background: rgb(255, 255, 255, 0.3);
+}
+
+/* Main Body */
+.main-body {
+  font-size: 25px;
+  padding-top: 100px;
+  justify-content: center;
+}
+.main-body a {
+  text-decoration: none;
+}
+
+.main-body a:hover {
   text-decoration: underline;
   opacity: 0.7;
 }
-.our-products {
-  padding: 30px;
+.main-body .our-products {
   font-weight: bolder;
 }
-.custom-main-image {
-  width: 500px;
-  height: 500px;
+
+.main-body .custom-main-image {
+  width: 75%;
+  height: 300px;
 }
 
 /* Contacts */
@@ -41,6 +88,7 @@ a:hover {
   padding-left: 250px;
 }
 .contacts h1 {
+  padding-top: 40px;
   color: #fff;
   line-height: 1.5;
 }
@@ -50,109 +98,13 @@ a:hover {
 }
 
 footer {
-  font-family: "Playwrite AU VIC", cursive;
-  padding: 20px;
+  margin-top: 20px;
   font-size: 15px;
   font-weight: bolder;
   color: #4d467f;
   text-align: center;
 }
-.about-footer {
-  margin-top: 100px;
-  padding: 20px;
-  font-size: 15px;
-  font-weight: bolder;
-  background-color: #4d467f;
-  color: #fff;
-
-  text-align: center;
-}
-
-/* Responsive CSS */
-
-@media (max-width: 992px) {
-  .custom-main-image {
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-  }
-  h1,
-  h3 {
-    font-size: 30px;
-    margin: 20px;
-  }
-
-  p {
-    font-size: 25px;
-  }
-}
-
-@media (max-width: 768px) {
-  .align-right {
-    justify-content: flex-start;
-  }
-
-  .contacts {
-    padding: 0;
-  }
-
-  h1,
-  h3 {
-    font-size: 24px;
-    margin: 20px;
-  }
-
-  p {
-    font-size: 18px;
-  }
-
-  .our-products {
-    margin: 50px;
-    padding: 20px;
-  }
-
-  footer {
-    padding: 10px;
-    font-size: 12px;
-  }
-
-  .contacts h1 {
-    font-size: 20px;
-    line-height: 1.2;
-  }
-
-  .social-contacts a i {
-    font-size: 30px;
-  }
-}
-
-@media (max-width: 576px) {
-  .logo {
-    width: 120px;
-  }
-
-  .contacts {
-    padding-left: 20px;
-  }
-
-  .projects {
-    margin: 50px;
-  }
-
-  .our-products {
-    margin: 30px;
-    padding: 15px;
-    font-size: 20px;
-  }
-
-  .view-work-button {
-    margin-top: 50px;
-    font-size: 18px;
-  }
-
-  .custom-main-image {
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-  }
+.copyRights p {
+  padding-top: 10px;
+  line-height: 1.5;
 }

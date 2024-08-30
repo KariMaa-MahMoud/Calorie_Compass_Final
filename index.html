@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- meta tags -->
+    <!-- meta tags start-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Calorie Compass" />
@@ -22,8 +22,8 @@
     <meta property="og:image" content="logo.png" />
     <meta property="og:url" content="https://bahy.pythonanywhere.com/" />
     <meta property="og:type" content="website" />
-
-    <!-- bootstraps -->
+    <!-- meta tags end-->
+    <!-- bootstraps start-->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -39,14 +39,14 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <!-- bootstraps end-->
     <!-- tab Logo -->
     <link rel="icon" href="logo.png" type="image/png" />
     <title>Calorie Compass</title>
     <link rel="stylesheet" href="index-style.css" />
   </head>
   <body>
-    <div id="datetime"></div>
-
+    <!-- header start -->
     <header class="nav-bar">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -108,74 +108,65 @@
         </div>
       </nav>
     </header>
-    <main class="main-body">
-      <div class="titles">
+    <!-- header end -->
+   
+      <div class="intro-page flex">
         <h1 class="text-center">Your Health Companions</h1>
         <h3 class="text-center">Track Your Progress</h3>
+        <p class="text-center">
+          Calorie Compass is your ultimate guide in your weight loss journey.
+          With our app, you can easily track your daily calorie intake, create
+          your profile, add meals, and track your progress toward daily and
+          weekly calorie and weight loss goals. Our app also suggests healthy
+          meals that align with your calorie goals.
+        </p>
+        <a href="#products"><button class="text-center">Our Products</button></a>
       </div>
-      <div class="container-fluid" id="products">
-        <div class="row">
-          <div class="col-md-6 p-5">
-            <p>
-              Calorie Compass is your ultimate guide in your weight loss
-              journey. With our app, you can easily track your daily calorie
-              intake, create your profile, add meals, and track your progress
-              toward daily and weekly calorie and weight loss goals. Our app
-              also suggests healthy meals that align with your calorie goals.
-            </p>
-          </div>
-          <div class="col-md-6 p-5">
-            <img
-              src="main.png"
-              alt="Calorie Compass is your ultimate guide in your weight loss journey"
-              class="img-fluid custom-main-image"
-            />
+       <main class="main-body">
+        <h1 class="text-center p-3 our-products" id="products">Our Products</h1>
+        <div class="container-fluid meal-tracking flex">
+          <div class="row">
+            <div class="col-md-6 p-3">
+              <p>
+                <b>Daily Meal Tracking</b> is a fundamental feature of our app.
+                With meal tracking, users can easily log their daily food
+                intake. Whether it’s breakfast, lunch, dinner, or snacks, our
+                app allows users to record the details of each meal. By keeping
+                track of their meals, users gain insights into their calorie
+                consumption patterns, helping them make informed decisions about
+                their diet.
+              </p>
+            </div>
+            <div class="col-md-6 p-3">
+              <a href="#"
+                ><img
+                  src="meal-suggestion.png"
+                  alt=""
+                  class="img-fluid custom-main-image"
+              /></a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <h1 class="text-center p-6 our-products">Our Products</h1>
-      <div class="container-fluid meal-tracking">
-        <div class="row">
-          <div class="col-md-6 p-5">
-            <p>
-              <b>Daily Meal Tracking</b> is a fundamental feature of our app.
-              With meal tracking, users can easily log their daily food intake.
-              Whether it’s breakfast, lunch, dinner, or snacks, our app allows
-              users to record the details of each meal. By keeping track of
-              their meals, users gain insights into their calorie consumption
-              patterns, helping them make informed decisions about their diet.
-            </p>
-          </div>
-          <div class="col-md-6 p-5">
-            <a href="#"
-              ><img
-                src="meal-suggestion.png"
-                alt=""
-                class="img-fluid custom-main-image"
-            /></a>
-          </div>
-        </div>
-      </div>
-      <div class="container-fluid calorie-calc">
-        <div class="row">
-          <div class="col-md-6 p-5">
-            <a href="#">
-              <img
-                src="meal-tracker.png"
-                alt=""
-                class="img-fluid custom-main-image"
-            /></a>
-          </div>
-          <div class="col-md-6 p-5">
-            <p>
-              <b>Calculating Daily Calorie Intake</b> is crucial for anyone
-              aiming to manage their weight. Our app simplifies this process.
-              Users input their personal details (such as age, weight, and
-              height), and our algorithm computes their daily caloric needs.
-              It’s a powerful tool for understanding how many calories you
-              should consume to achieve your health and fitness goals.
-            </p>
+        <div class="container-fluid calorie-calc">
+          <div class="row">
+            <div class="col-md-6 p-3">
+              <a href="#">
+                <img
+                  src="meal-tracker.png"
+                  alt=""
+                  class="img-fluid custom-main-image"
+              /></a>
+            </div>
+            <div class="col-md-6 p-3">
+              <p>
+                <b>Calculating Daily Calorie Intake</b> is crucial for anyone
+                aiming to manage their weight. Our app simplifies this process.
+                Users input their personal details (such as age, weight, and
+                height), and our algorithm computes their daily caloric needs.
+                It’s a powerful tool for understanding how many calories you
+                should consume to achieve your health and fitness goals.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -212,12 +203,17 @@
           </div>
         </div>
       </div>
+      <div class="copyRights"><p>Copyright ©2024 Calorie Compass
+        <br>
+     All Rights Reserved
+        <br>
       Build by
       <a href="https://github.com/KariMaa-MahMoud" target="_blank"
         >Karima Mahmoud</a
       >
       &
-      <a href="https://github.com/BahyAllaAllam" target="_blank">Bahy Allam</a>
+      <a href="https://github.com/BahyAllaAllam" target="_blank">Bahy Allam</a></p></div>
+      
     </footer>
     <script src="scripts.js"></script>
   </body>
