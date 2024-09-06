@@ -16,7 +16,7 @@ def profile_edit(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, ('Your account has been updated !'))
+            messages.success(request, 'Your account has been updated !')
             return redirect('users:profile_edit')
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -25,21 +25,20 @@ def profile_edit(request):
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'title': ('Profile')
     }
     return render(request, 'users/profile_edit.html', context)
 
 
 @login_required
-def delete_user(request, id):
-    user = User.objects.get(id=id)
+def delete_user(request, username):
+    user = User.objects.get(username=username)
     if request.user == user:
         if request.method == 'POST':
             user.delete()
-            messages.success(request, _('Your account has been deleted successfully !'))
-            return redirect('logout')
-        context = {'title': _('Delete-Account')}
+            messages.success(request, 'Your account has been deleted successfully !')
+            return redirect('/')
+        context = {'username': username}
         return render(request, 'users/delete_user.html', context)
     else:
-        messages.warning(request, _('Oooops you do not have permission to do that!'))
+        messages.warning(request, 'Oooops you do not have permission to do that!')
         return redirect('users:profile_edit')

@@ -1,18 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from meals_tracker.models import Meals
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
-from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from meals_tracker.forms import MealForm
-import requests
 from django.http import JsonResponse
 from django.conf import settings
-from meals_tracker.utils import fetch_food_items
 from django.template.defaulttags import register
-from django.core.exceptions import ValidationError
 from django.contrib import messages
+from django.urls import reverse
 
 
 @register.filter(name='split')
@@ -43,7 +38,6 @@ class MealView(LoginRequiredMixin, View):
         form = MealForm()
         return self.form_invalid(request, form)
 
-
     def post(self, request, *args, **kwargs):
         if request.POST.get('_method') == 'delete':
             return self.delete(request, *args, **kwargs)
@@ -52,21 +46,10 @@ class MealView(LoginRequiredMixin, View):
         if form.is_valid():
             new_meal = form.save(commit=False)
             new_meal.user = request.user
-            food_items = new_meal.food_items.replace(" ", "")
-
-            for item in food_items.split(','):
-                response = fetch_food_items(item)
-                if response:
-                    for i in response:
-                        if i['name'] in item:
-                            new_meal.calories += i['calories']
-                else:
-                    form.add_error('food_items', "Please enter valid food with comma-separated values")
-                    return self.form_invalid(request, form)
-
-            new_meal.food_items = food_items
+            new_meal.calories = request.POST.get('calories', 0)
+            new_meal.food_items = request.POST.get('food_items')
             new_meal.save()
-            return redirect('meals_tracker:meals_list')
+            return JsonResponse({'redirect_url': reverse('meals_tracker:meals_list')})
 
         return self.form_invalid(request, form)
 
@@ -83,6 +66,7 @@ class MealView(LoginRequiredMixin, View):
             'meals': meals,
             'selected_meal': selected_meal,
             'form': form,
+            'calorie_ninjas_api_key': settings.CALORIE_NINJAS_API_KEY
         })
 
 

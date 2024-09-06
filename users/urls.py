@@ -5,6 +5,6 @@ app_name = 'users'
 
 urlpatterns = [
     path('profile/', views.profile_edit, name='profile_edit'),
-    path('user/<int:id>/delete', views.delete_user, name='delete-user'),
+    path('user/<str:username>/delete', views.delete_user, name='delete-user'),
 
 ]

@@ -1,10 +1,9 @@
 from django.contrib import admin
-from meals_tracker.models import Food, Meals
+from meals_tracker.models import Meals
 from meals_tracker.forms import MealForm
 
 
 # Register your models here.
-admin.site.register(Food)
 
 
 @admin.register(Meals)

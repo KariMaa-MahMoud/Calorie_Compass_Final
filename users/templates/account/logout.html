@@ -12,16 +12,11 @@
     {% element p %}
         Are you sure you want to sign out?
     {% endelement %}
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                Sign Out
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
+    <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        {{ redirect_field }}
+        <input type="submit" class="btn btn-danger" value="Sign out">
+        <a class="btn btn-success" href="/">Take Me Back</a>
+    </form>
+
 {% endblock auth_content %}

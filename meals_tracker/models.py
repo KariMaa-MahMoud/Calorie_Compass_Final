@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.urls import reverse
 
 
 class Meals(models.Model):
@@ -13,6 +14,8 @@ class Meals(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        if isinstance(self.calories, float):
+            self.calories = round(self.calories)
         super(Meals, self).save(*args, **kwargs)
 
     def __str__(self):

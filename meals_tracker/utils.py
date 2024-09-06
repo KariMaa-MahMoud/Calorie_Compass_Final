@@ -1,5 +1,6 @@
 import requests
 
+
 def fetch_food_items(query):
     api_url = f"https://api.calorieninjas.com/v1/nutrition?query={query}"
     headers = {

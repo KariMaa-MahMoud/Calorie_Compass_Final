@@ -1,6 +1,6 @@
 from django import forms
-from meals_tracker.models import Meals, Food
-from meals_tracker.utils import fetch_food_items
+from meals_tracker.models import Meals
+
 
 class MealForm(forms.ModelForm):
 
@@ -10,4 +10,4 @@ class MealForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['food_items'].widget.attrs.update({'placeholder': ('Enter your food with comma-separated ...')})
+        self.fields['food_items'].widget.attrs.update({'placeholder': 'Enter your food items with only one type of separator (commaspace, space, or plus sign) to separate food items'})

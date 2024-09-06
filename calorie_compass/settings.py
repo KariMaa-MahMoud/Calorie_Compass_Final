@@ -42,9 +42,6 @@ INSTALLED_APPS = [
     # All Auth configuration
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
     # 3rd party apps
     "bootstrap5",
     #######################
@@ -160,17 +157,18 @@ ACCOUNT_USERNAME_BLACKLIST = [
 
 SOCIALACCOUNT_PROVIDERS = {}
 
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CHANGE_EMAIL = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
-ACCOUNT_LOGIN_BY_CODE_ENABLED = True
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE  = True
-ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = False
-SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+ACCOUNT_SIGNUP_FORM_HONEYPOT_FIELD = True
+ACCOUNT_EMAIL_NOTIFICATIONS = True
+ACCOUNT_MAX_EMAIL_ADDRESSES = 2
+
 # SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -188,4 +186,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # for testing the email backend only
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-CALORIE_NINJAS_API_KEY = "L3CXnXFXDdyk1eD+K2XfaQ==gzk5Thrkwk67Gkcv"
+CALORIE_NINJAS_API_KEY = os.environ['CALORIE_NINJAS_API_KEY']
